@@ -1,0 +1,236 @@
+################################################################################
+# Linuxkommandon 2023-08-23
+################################################################################
+
+# 1. Kataloger
+
+################################################################################
+# @brief En ny katalog skapas via kommandot mkdir (make directory). Som exempel,
+#        för att skapa en ny katalog döpt dir1, skriv följande kommando:
+#   
+#        $ mkdir dir1
+################################################################################
+
+################################################################################
+# @brief Flera kataloger kan skapas samtidigt. Som exempel, för att skapa
+#        underkataloger inc, src och build i katalogen dir1, dirigera först
+#        till dir1 via kommandot cd (change directory) och skapa sedan 
+#        underkatalogerna på en enda rad (med ett mellanrum dem emellan):
+#
+#        $ cd dir1
+#        $ mkdir inc src build
+################################################################################
+
+################################################################################
+# @brief Tomma kataloger kan raderas via kommandot rmdir (remove directory).
+#        Som exempel, för att radera katalogen build, skriv följande kommando:
+#
+#        $ rmdir build
+################################################################################
+
+################################################################################
+# @brief Om katalogen inte är tom, använd kommandot rm (remove) med flaggan -r.
+#        Som exempel, för att radera katalogen dir1 inklusive befintligt 
+#        innehåll, skriv följande kommando:
+#
+#        $ rm -r dir1
+################################################################################
+
+# 2. Filer
+
+################################################################################
+# @brief Filer kan skapas via kommandot touch. Som exempel, för att skapa en
+#        fil döpt main.c i aktuell katalog, skriv följande kommando:
+#
+#        $ touch main.c 
+################################################################################
+
+################################################################################
+# @brief Givetvis kan flera filer skapas på samma gång. Som exempel, för att 
+#        skapa en tre filer döpta utils.h, utils.c samt main.c i aktuell 
+#        katalog, skriv följande kommando:
+#
+#        $ touch main.c utils.h utils.c
+################################################################################
+
+################################################################################
+# @brief Det är även möjligt att skapa filerna i specifika underkataloger genom 
+#        att använda underkatalogsnamnet som prefix samt ett snedstreck som
+#        separator, dvs. <underkatalog/filnamn>. Som exempel, för att placera
+#        källkodsfiler main.c samt utils.c i underkatalogen src och headerfilen
+#        utils.h i underkatalogen inc, skriv följande kommando:
+#
+#        $ touch src/main.c src/utils.c inc/utils.h
+################################################################################
+
+################################################################################
+# @brief Filer kan enkelt raderas via kommandot rm (remove). Som exempel, för
+#        att radera filen utils.c i underkatalogen src, skriv följande kommando:
+#
+#        $ rm src/utils.c
+################################################################################
+
+# 3. Öppna katalog i VS Code
+
+################################################################################
+# @brief En hel katalog kan öppnas i Visual Studio Code via kommandot code.
+#        För att specificera att hela katalogen ska öppnas, skriv en punkt
+#        efter code, vilket betyder "denna katalog":
+#
+#        $ code .
+################################################################################
+
+################################################################################
+# @brief Om code inte går att öppna, följ installationsguiden på denna länk:
+#        https://phoenixnap.com/kb/install-vscode-ubuntu
+################################################################################
+
+################################################################################
+# @brief Spara filer genom att klicka Ctrl + S när du är färdig med dem.
+################################################################################
+
+# 4. Kompilering med GCC 
+
+################################################################################
+# @brief Programkoden kan kompileras med GCC-kompilatorn, som översätter
+#        koden till maskinkod (ettor och nollor). Varje källkodsfil översätts
+#        enskilt och sammanlänkas sedan till en körbar fil, en s.k. executable.
+#        Installera GCC-kompilatorn via installation av paketet build-essential:
+#
+#        $ sudo apt update
+#        $ sudo apt -y install build-essential
+################################################################################
+
+################################################################################
+# @brief För att kompilera en fil döpt main.c och skapa en körbar fil döpt
+#        run_program, skriv följande kommando:
+#
+#        $ gcc main.c -o run_program
+#
+# @note  -o run_program betyder att aktuell output vid kompileringen, dvs.
+#        den körbara filen, ska döpas till run_program. 
+################################################################################
+
+################################################################################
+# @brief Vi kan också lägga till kompileringsflaggor, exempelvis -Wall samt
+#        -Werror för att aktivera alla typer av varningar (-Wall) samt generera
+#        kompileringsfel ifall en varning uppstår (-Werror). Därmed måste
+#        samtliga varningar elimineras innan programmet kompileras och 
+#        förhoppningsvis kan då en del felaktigheter korrigeras effektivt:
+#
+#         $ gcc main.c -o run_program -Wall -Werror
+################################################################################
+
+################################################################################
+# @brief Det är också möjligt att länka externa bibliotek till vår körbara fil
+#        via flaggan -l (link). Som exempel, för att länka det externa 
+#        biblioteket pthread för att kunna använda flertrådning i aktuellt
+#        program, skriv följande kommando: 
+#
+#        $ gcc main.c -o run_program -Wall -Werror -l pthread
+################################################################################
+
+################################################################################
+# @brief Om samtliga headerfiler placeras i en separat underkatalog, exempelvis
+#        inc, kan dessa enkelt inkluderas i kompileringen via flaggan -I:
+#
+#        $ gcc main.c -o run_program -Wall -Werror -l pthread -I inc
+#
+#        I programmet kan då headerfilerna i underkatalogen inc enkelt 
+#        inkluderas både med <> samt "", dvs. både #include <utils.h> samt
+#        "utils.h" kommer fungera.
+################################################################################
+
+################################################################################
+# @brief Storleken på den körbara filen kan kontrolleras via kommandot du
+#        (disc usage). Som default skrivs storleken ut i kB. Genom att lägga
+#        till flaggan -b skrivs storleken i stället ut i byte. Som exempel,
+#        för att skriva ut storleken på den körbara filen run_program, skriv
+#        följande kommando:
+#
+#        $ du -b run_program
+################################################################################
+
+# 5. Programkörning
+
+################################################################################
+# @brief Efter kompilering kan den körbara filen, som utgör programmet, köras
+#        via följande kommando:
+#
+#        $ ./run_program
+################################################################################
+
+# 6. Lite information om makefiler
+
+################################################################################
+# @brief Normalt används någon typ av makefil för att man ska slippa skriva
+#        väldigt långa kompileringskommandon regelbundet. Antingen kan en
+#        enkel makefil (döpt makefile) användas med ett fåtal targets för
+#        att kompilera och köra programmet med kommandon som "make build",
+#        "make run" med mera, eller så används ett plattformsoberoende 
+#        byggsystem såsom CMake. 
+################################################################################
+
+################################################################################
+# @brief Innehållet i en enkel makefil kan se ut såsom nedan, där kommandon
+#        "make" samt "make all" kompilerar samt kör programmet, "make build"
+#        kompilerar programmet och "make run" kör programmet.
+################################################################################
+all: build run
+
+build:
+	@gcc ../src/main.c ../src/utils.c -o run_program -Wall -Werror -I ../inc -l pthread
+run:
+	@./run_test
+
+################################################################################
+# @brief En makefil består av ett antal targets som kan köras, i detta fall
+#        build för att kompilera koden, run för att köra programmet samt all
+#        för att kompilera och sedan bygga programmet. Ett target körs genom
+#        att skriva make <target-namnet>, alltså
+#
+#        $ make build # Kompilerar programmet.
+#        $ make run   # Kör programmet.
+#        $ make all   # Kompilerar och kör sedan programmet.
+#
+#        Det target som placeras längst upp i filen utgör default-target;
+#        om inget target körs detta. I detta fall utgör target all default,
+#        om inget target anges kommer då koden kompileras och sedan köras:
+#
+#        $ make # Kompilerar och kör programmet (via default-target all).
+################################################################################
+
+################################################################################
+# @brief Motsvarande kod i en CMake-fil döpt CMakeLists.txt visas nedan.
+#        CMake kan installera via nedanstående kommando:
+#
+#        $ sudo apt -y install cmake
+################################################################################
+cmake_minimum_required(VERSION 3.20)                       # Minimum compatible CMake version set to 3.20.
+project(example_program)                                   # Setting project name to example_program.
+include_directories(../inc)                                # Includes directory inc in build.
+add_executable(run_program ../src/main.c ../src/utils.c)   # Creates executable run_program.
+target_compile_options(run_program PRIVATE -Wall -Werror)  # Compile options set locally for run_program.
+target_link_libraries(run_program pthread)                 # Links external library pthread to run_program.
+
+################################################################################
+# @brief För att kompilera med CMake, skriv följande kommando en gång för att
+#        autogenerera diverse makefiler:
+#
+#        $ cmake CMakeLists.txt
+################################################################################
+
+################################################################################
+# @brief Efter att ha autogenererat makefilerna kan sedan koden kompileras via
+#        kommandot make för att skapa den körbara filen run_program: 
+#
+#        $ make
+################################################################################
+
+################################################################################
+# @brief Efter kompilering kan programmet köras genom att exekvera den körbara 
+#        filen run_program så som visades tidigare:
+#
+#        $ ./run_program
+################################################################################
+
