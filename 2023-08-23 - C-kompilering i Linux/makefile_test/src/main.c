@@ -3,7 +3,7 @@
  ********************************************************************************/
 #include <stdio.h>
 #include <utils.h>
-#include <gpiod.h> /* Included just for testing loading of external library gpiod. */
+#include <gpiod.h> /* Included for testing linking of external library gpiod. */
 
 /********************************************************************************
  * @brief Calculates the sum and average of integers {1, 3, 5, 7, 9} and prints
