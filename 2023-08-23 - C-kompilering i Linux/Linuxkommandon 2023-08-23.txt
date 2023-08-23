@@ -181,7 +181,7 @@ all: build run
 build:
 	@gcc ../src/main.c ../src/utils.c -o run_program -Wall -Werror -I ../inc -l pthread
 run:
-	@./run_test
+	@./run_program
 
 ################################################################################
 # @brief En makefil består av ett antal targets som kan köras, i detta fall
