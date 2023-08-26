@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(sorting)
+include_directories(../inc)
+add_executable(run_sort ../src/main.c ../src/utils.c)
+target_compile_options(run_sort PRIVATE -Wall -Werror)
