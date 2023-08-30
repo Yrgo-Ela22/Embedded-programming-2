@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.18) 
+project(gpiod_example)
+add_executable(run_example main.c)
+target_compile_options(run_example PRIVATE -Wall -Werror)
+target_link_libraries(run_example gpiod)
