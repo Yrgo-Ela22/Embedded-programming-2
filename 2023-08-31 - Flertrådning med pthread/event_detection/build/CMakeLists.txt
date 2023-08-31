@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.18)
+project(event_detection)
+include_directories(../inc)
+add_executable(run_event_detection ../src/gpiod_utils.c ../src/main.c)
+target_compile_options(run_event_detection PRIVATE -Wall -Werror)
+target_link_libraries(run_event_detection gpiod)
+set_target_properties(run_event_detection PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)

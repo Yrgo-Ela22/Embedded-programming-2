@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(thread_example_cpp)
+add_executable(run_thread_example_cpp main.cpp)
+target_compile_options(run_thread_example_cpp PRIVATE -Wall -Werror)
+target_link_libraries(run_thread_example_cpp pthread)
+set_target_properties(run_thread_example_cpp PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)
