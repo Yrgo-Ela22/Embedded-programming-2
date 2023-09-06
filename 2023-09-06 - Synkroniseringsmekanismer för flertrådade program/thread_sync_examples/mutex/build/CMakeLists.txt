@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(mutex)
+add_executable(run_mutex ../main.cpp)
+target_compile_options(run_mutex PRIVATE -Wall -Werror)
+target_link_libraries(run_mutex pthread)
+set_target_properties(run_mutex PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)

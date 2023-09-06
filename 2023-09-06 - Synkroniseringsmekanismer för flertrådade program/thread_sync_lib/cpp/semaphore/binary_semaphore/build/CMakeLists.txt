@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(binary_semaphore_cpp)
+include_directories(../inc)
+add_executable(run_binary_semaphore ../src/main.cpp ../src/semaphore.cpp)
+target_compile_options(run_binary_semaphore PRIVATE -Wall -Werror)
+target_link_libraries(run_binary_semaphore pthread)

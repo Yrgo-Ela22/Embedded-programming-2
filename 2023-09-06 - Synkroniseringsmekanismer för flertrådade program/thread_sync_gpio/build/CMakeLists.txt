@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.18)
+project(thread_sync_gpio)
+include_directories(../inc)
+add_executable(run_thread_sync_gpio ../src/main.c ../src/gpiod_utils.c)
+target_compile_options(run_thread_sync_gpio PRIVATE -Wall -Werror)
+target_link_libraries(run_thread_sync_gpio gpiod pthread)
+set_target_properties(run_thread_sync_gpio PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)

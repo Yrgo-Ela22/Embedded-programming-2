@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(semaphore)
+include_directories(../inc)
+add_executable(run_semaphore ../src/main.c ../src/semaphore.c) 
+target_link_libraries(run_semaphore pthread)
+target_compile_options(run_semaphore PRIVATE -Wall -Werror)

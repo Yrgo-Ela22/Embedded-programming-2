@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.20)
+project(semaphore_test)
+find_package(GTest REQUIRED) 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc ${GTEST_INCLUDE_DIRS})
+add_executable(run_semaphore_test semaphore_test.cpp ../src/semaphore.c) 
+target_link_libraries(run_semaphore_test ${GTEST_LIBRARIES} pthread)
+target_compile_options(run_semaphore_test PRIVATE -Wall -Werror)

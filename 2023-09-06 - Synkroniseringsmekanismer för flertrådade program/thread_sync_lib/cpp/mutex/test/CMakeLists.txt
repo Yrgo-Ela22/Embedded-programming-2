@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20) 
+find_package(GTest REQUIRED)
+include_directories(../inc ${GTEST_INCLUDE_DIRS})
+add_executable(run_mutex_test mutex_test.cpp) 
+target_link_libraries(run_mutex_test ${GTEST_LIBRARIES} pthread)
+target_compile_options(run_mutex_text PRIVATE -Wall -Werror)

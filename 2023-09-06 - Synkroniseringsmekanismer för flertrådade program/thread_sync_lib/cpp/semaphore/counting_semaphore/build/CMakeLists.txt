@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.20)
+project(counting_semaphore)
+include_directories(../inc)
+add_executable(run_counting_semaphore ../src/main.cpp)
+target_compile_options(run_counting_semaphore PRIVATE -Wall -Werror)
+target_link_libraries(run_counting_semaphore pthread)
+set_target_properties(run_counting_semaphore PROPERTIES RUNTIME_OUTPUT_DIRECTORY ../)
